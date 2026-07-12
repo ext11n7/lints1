@@ -197,6 +197,7 @@ final class SourceTest {
             "object-does-not-match-filename",
             "comment-not-capitalized",
             "empty-object",
+            "mandatory-architect",
             "mandatory-home",
             "mandatory-version",
             "mandatory-package",
@@ -220,7 +221,7 @@ final class SourceTest {
     void returnsOnlyOneDefect() {
         final Collection<Defect> defects = new Source(
             new EoProgram("org/eolang/lints/main-with-test.eo").parse()
-        ).without("mandatory-spdx").defects();
+        ).without("mandatory-architect", "mandatory-spdx").defects();
         MatcherAssert.assertThat(
             String.format(
                 "Only one defect should be found, but got %d: %s",
@@ -239,6 +240,7 @@ final class SourceTest {
                 new EoProgram("org/eolang/lints/unlint-mandatory-home.eo").parse()
             ).without(
                 "unlint-non-existing-defect",
+                "mandatory-architect",
                 "mandatory-home",
                 "mandatory-version",
                 "empty-object",
@@ -275,6 +277,7 @@ final class SourceTest {
                     )
                 ).parse()
             ).without(
+                "mandatory-architect",
                 "mandatory-home",
                 "mandatory-version",
                 "empty-object",
